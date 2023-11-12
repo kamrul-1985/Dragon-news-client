@@ -9,8 +9,7 @@ const LogIn = () => {
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('login page location:', location );
-  const from = location.state.from.pathname || '/category/0';
+  const from = location.state?.from?.pathname || '/category/0';
 
   const handleLogIn = event => {
     event.preventDefault();
@@ -21,7 +20,6 @@ const LogIn = () => {
     signIn(email, password)
     .then (result => {
       const loggedInUser = result.user;
-      console.log(loggedInUser);
       navigate(from, {replace: true});
     }) 
 
@@ -39,9 +37,7 @@ const LogIn = () => {
                  <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" name="email" placeholder="Enter email" required />
-       
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name="password" placeholder="Password" required/>

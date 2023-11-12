@@ -8,7 +8,6 @@ import { AuthContext } from '../../../provider/AuthProvider';
 const NavigationBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
 
   const handleLogOut = () => {
     logOut()
@@ -16,7 +15,7 @@ const NavigationBar = () => {
       .catch(error => {
         console.log(error.message);
       })
-  }
+  };
 
   return (
     <div>

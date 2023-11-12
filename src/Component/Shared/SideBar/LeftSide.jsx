@@ -11,7 +11,7 @@ const LeftSide = () => {
             .catch(error => console.error(error.message))
       },[])
 
-console.log(categories);
+
       return (
          <div>
             <h4>News Categories</h4>

@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import { useState } from 'react';
 
 const Register = () => {
 
   const { createUser } = useContext(AuthContext);
+  const [accepted, setAccepted] = useState(false)
 
   const handleRegister = event => {
 
@@ -15,15 +17,19 @@ const Register = () => {
     const photo = form.photo.value
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photo, email, password)
+   
 createUser(email, password)
 .then(result => {
   const createdUser = result.user;
-  console.log(createdUser);
+  
 })
 .catch(error => {
   console.log(error.message);
 })
+  }
+
+ const handleTermsAndCondition = event => {
+setAccepted(event.target.checked);
   }
 
   return (
@@ -53,20 +59,27 @@ createUser(email, password)
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
+
+{/* check box for accepting term & conditions */}
+
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check 
+          onClick={ handleTermsAndCondition} 
+          type="checkbox" 
+          label="Check me out" />
           <Form.Text className="text-success">
-            Accept Terms and Condition!
+            Accept <Link to="/terms">Terms and Condition</Link>!
           </Form.Text>
         </Form.Group>
+
         <Form.Text className="text-success">
           Already have an account?   please.
-          <Link to="/login" className='text-danger fw-bold ps-2'>LogIn</Link>
+          <Link to="/login" className='text-danger fw-bold ps-2' >LogIn</Link>
         </Form.Text>
         <br />
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" disabled={!accepted}>
           Register
         </Button>
 

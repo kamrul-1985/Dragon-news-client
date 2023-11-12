@@ -8,6 +8,7 @@ import LogInLayOut from "../LayOuts/LOgInLayout";
 import LogIn from "../Component/LogIn/LogIn";
 import Register from "../Component/LogIn/Register";
 import PrivetRoute from "./PrivetRoute";
+import TermsCondition from "../Component/Terms&Condition/TermsCondition";
 
 const router = createBrowserRouter([
       {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                   {
                         path:"/register",
                         element:<Register></Register>
+                  },
+                  {
+                        path:"/terms",
+                        element:<TermsCondition></TermsCondition>
                   },
             ]
       },
